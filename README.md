@@ -102,7 +102,7 @@ Two pseudo-labeling methods were applied on test data before adding it back for 
 ## 📄 Publication
 
 📝 *Also published a research paper in IEEE on this project titled:*  
-- 🏅 [View Project Certificate](./images/certificate.png)
+- 🏅 [View Project Certificate](./images/certificate.jpg)
 -**"Network Traffic Classification using Semi-Supervised Federated Learning with GAN-Based Data Augmentation"**
 
 ---
