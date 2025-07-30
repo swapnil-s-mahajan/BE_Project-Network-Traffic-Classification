@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <div class="dashboard">
+        <h1 style="margin-bottom: 20px;">Welcome to the Network Traffic Classification System</h1>
+        <p style="margin-bottom: 20px;">Current Federated Learning Progress: <b>60% Complete</b></p>
+        <button class="start-btn" onclick="window.location.href='/train'" style="margin-bottom: 20px;">Start Model Training</button>
+        <div class="metrics" style="margin-bottom: 20px;">
+            <h2>Latest Model Performance</h2>
+            <ul>
+                <li>Accuracy: 85%</li>
+                <li>Loss: 0.3</li>
+                <li>Precision: 0.87</li>
+                <li>Recall: 0.84</li>
+            </ul>
+        </div>
+    </div>
+{% endblock %}

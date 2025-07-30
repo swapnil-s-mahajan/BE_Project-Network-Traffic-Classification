@@ -1,0 +1,170 @@
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prediction Result</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+
+
+    <nav>
+        <a href="{{ url_for('home') }}">Home</a>
+        <a href="{{ url_for('upload') }}">Upload CSV</a>
+        <a href="{{ url_for('result', filename='') }}">Results</a>
+    </nav>
+
+
+    <header>
+        <h1>Prediction Results</h1>
+    </header>
+
+
+    <div class="container">
+        <h2>Predicted Traffic Classification</h2>
+        {{ tables[0]|safe }}
+
+        <h3>Classification Summary</h3>
+        <img src="{{ url_for('static', filename='plot.png') }}" alt="Pie Chart">
+    </div>
+
+    <footer>
+        <p>Powered by Network Traffic Classifier</p>
+    </footer>
+
+</body>
+</html> -->
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Prediction Result</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <!-- <h2>Prediction Results</h2>
+    <div class="container">
+        
+
+        <h3>Class Distribution (Pie Chart)</h3>
+        <canvas id="pieChart" width="300" height="300"></canvas>
+        <hr>
+
+
+        <h3>Class Distribution (Bar Chart)</h3>
+        <canvas id="barChart" width="600" height="300"></canvas>
+
+    </div> -->
+    <nav class="navbar">
+        <a href="{{ url_for('home') }}" class="{% if request.path == '/' %}active{% endif %}">Home</a>
+        <a href="{{ url_for('upload') }}" class="{% if request.path.startswith('/upload') %}active{% endif %}">Upload</a>
+        <a href="{{ url_for('result_no_file') }}" class="{% if request.path.startswith('/result') %}active{% endif %}">Results</a>
+    </nav>
+      
+      
+
+    <h2 class="main-title">Prediction Results</h2>
+
+    <div class="container">
+        <!-- Pie Chart displaying the class distribution -->
+        <h3 class="chart-title">Class Distribution (Pie Chart)</h3>
+        <div class="chart-wrapper">
+            <canvas id="pieChart" width="600" height="600"></canvas>
+        </div>
+        
+        <!-- <hr> -->
+
+        <!-- Bar Chart displaying the class distribution (alternative view) -->
+        <h3 class="chart-title">Class Distribution (Bar Chart)</h3>
+        <div class="chart-container">
+            <canvas id="barChart" width="600" height="300"></canvas>
+        </div>
+    </div>
+
+    <script>
+        // Prepare the data for pie chart and bar chart from the backend (class counts)
+        const classCounts = {{ class_counts | tojson | safe}};
+        const classLabels = Object.keys(classCounts);
+        const classData = Object.values(classCounts);
+
+        // Pie Chart
+        const pieCtx = document.getElementById('pieChart').getContext('2d');
+        new Chart(pieCtx, {
+            type: 'pie',
+            data: {
+                labels: classLabels,
+                datasets: [{
+                    data: classData,
+                    backgroundColor: [
+                        '#8ECAE6', '#219EBC', '#023047', '#FFB703', '#FB8500',
+                        '#B5E48C', '#F4A300', '#D4E157', '#FF5722', '#C2185B'
+                    ],
+                    borderWidth: 0
+                }]
+            },
+            options: {
+                responsive: true,
+                plugins: {
+                    legend: {
+                        position: 'top',
+                        labels: {
+                            font: {
+                                size: 14
+                            }
+                        }
+                    },
+                    tooltip: {
+                        backgroundColor: '#023047',
+                        titleColor: '#FFFFFF',
+                        bodyColor: '#FFFFFF'
+                    }
+                }
+            }
+        });
+
+        // Bar Chart
+        const barCtx = document.getElementById('barChart').getContext('2d');
+        new Chart(barCtx, {
+            type: 'bar',
+            data: {
+                labels: classLabels,
+                datasets: [{
+                    label: 'Predicted Classes Count',
+                    data: classData,
+                    backgroundColor: '#FB8500',
+                    borderColor: '#FFB703',
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                responsive: true,
+                plugins: {
+                    legend: {
+                        display: false
+                    }
+                },
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        ticks: {
+                            font: {
+                                size: 14
+                            }
+                        }
+                    },
+                    x: {
+                        ticks: {
+                            font: {
+                                size: 14
+                            }
+                        }
+                    }
+                }
+            }
+        });
+    </script>
+</body>
+</html>
+

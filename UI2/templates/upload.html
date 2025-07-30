@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Upload CSV</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+
+    <!-- Navbar -->
+    <nav class="navbar">
+        <a href="{{ url_for('home') }}" class="{% if request.path == '/' %}active{% endif %}">Home</a>
+        <a href="{{ url_for('upload') }}" class="{% if request.path.startswith('/upload') %}active{% endif %}">Upload</a>
+        <a href="{{ url_for('result_no_file') }}" class="{% if request.path.startswith('/result') %}active{% endif %}">Results</a>
+    </nav>
+      
+      
+      
+
+    <!-- Header Section -->
+    <header>
+        <h1>Upload Network Traffic CSV</h1>
+    </header>
+
+    <!-- Main Section -->
+    <div class="container">
+        <form method="post" enctype="multipart/form-data">
+            <input type="file" name="file" accept=".csv" required><br><br>
+            <input type="submit" value="Upload">
+        </form>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <p>Powered by Network Traffic Classifier</p>
+    </footer>
+
+</body>
+</html>

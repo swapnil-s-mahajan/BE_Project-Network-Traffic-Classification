@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <div class="upload">
+        <h1>Upload Network Traffic Data</h1>
+        <form action="/upload" method="POST" enctype="multipart/form-data">
+            <input type="file" name="datafile" accept=".csv, .json" required>
+            <button type="submit">Upload Data</button>
+        </form>
+    </div>
+{% endblock %}

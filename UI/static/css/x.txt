@@ -1,0 +1,96 @@
+/* General reset and font */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f4f7fc;
+    color: #333;
+    line-height: 1.6;
+}
+
+/* Header Styling */
+header {
+    background-color: #4CAF50;
+    color: white;
+    padding: 20px;
+    text-align: center;
+    border-radius: 5px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+header h1 {
+    font-size: 36px;
+    font-weight: bold;
+}
+
+/* Results Section */
+.results {
+    background-color: white;
+    padding: 30px;
+    margin-top: 20px;
+    border-radius: 10px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    max-width: 900px;
+    margin: 30px auto;
+}
+
+.results h1 {
+    font-size: 32px;
+    margin-bottom: 20px;
+}
+
+.results p {
+    font-size: 20px;
+    margin: 10px 0;
+    font-weight: 500;
+    color: #333;
+}
+
+/* Performance Visualization */
+.graph {
+    margin-top: 30px;
+}
+
+.graph h2 {
+    font-size: 24px;
+    margin-bottom: 20px;
+    color: #333;
+    font-weight: 600;
+}
+
+/* Performance Chart */
+canvas {
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Adding some hover effects */
+.results p:hover {
+    color: #4CAF50;
+    cursor: pointer;
+    transition: color 0.3s ease;
+}
+
+.results h2:hover {
+    color: #4CAF50;
+    transition: color 0.3s ease;
+}
+
+/* Footer */
+footer {
+    text-align: center;
+    padding: 20px;
+    background-color: #333;
+    color: white;
+    border-radius: 5px;
+    margin-top: 30px;
+}
+
+footer p {
+    font-size: 14px;
+}

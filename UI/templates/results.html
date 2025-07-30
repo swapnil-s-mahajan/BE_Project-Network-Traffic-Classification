@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <div class="results">
+        <h1>Model Results</h1>
+        <p>Accuracy: 85%</p>
+        <p>Precision: 0.90</p>
+        <p>Recall: 0.72</p>
+
+        <h2>Performance Visualization</h2>
+        <div class="graph">
+            <canvas id="performanceChart" width="800" height="350"></canvas>
+        </div>
+    </div>
+
+    <script>
+        // Sample data for the performance chart
+        var ctx = document.getElementById('performanceChart').getContext('2d');
+        var performanceChart = new Chart(ctx, {
+            type: 'bar',  // Bar chart for visualizing accuracy, precision, recall
+            data: {
+                labels: ['Accuracy', 'Precision', 'Recall'],
+                datasets: [{
+                    label: 'Model Performance',
+                    data: [85, 90, 72],  // Replace with your actual values
+                    backgroundColor: ['#4CAF50', '#FF9800', '#FF5722'],  // Different colors for each metric
+                    borderColor: ['#388E3C', '#F57C00', '#D32F2F'],
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                },
+                plugins: {
+                    legend: {
+                        position: 'top',
+                    },
+                },
+            }
+        });
+    </script>
+{% endblock %}
